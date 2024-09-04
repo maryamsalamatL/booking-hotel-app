@@ -1,5 +1,11 @@
 import "./App.scss";
+import Header from "./components/Header/Header";
 
 export default function App() {
-  return <h1>starter file</h1>;
+  return (
+    <div className="app">
+      <div className="headerBackLayer"></div>
+      <Header />
+    </div>
+  );
 }

@@ -1,0 +1,48 @@
+$bg-color: rgb(246, 247, 251);
+$white-color: rgb(255, 255, 255);
+$primary-font-color: rgb(4, 22, 39);
+$secondary-font-color: rgb(181, 181, 181);
+$dark-blue: rgb(2, 19, 36);
+$light-blue: rgb(35, 86, 207);
+$light-gray: rgb(245, 246, 248);
+$border-radius: 10px;
+$main-border: 1px solid rgba(225, 225, 231, 51%);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  outline: none;
+  border: none;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: $primary-font-color;
+}
+
+body {
+  min-height: 100vh;
+  background-color: $bg-color;
+}
+
+button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+svg {
+  color: $primary-font-color;
+}
