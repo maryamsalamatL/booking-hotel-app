@@ -1,5 +1,7 @@
 import useFetch from "../../hooks/useFetch";
 import styles from "./LocationList.module.scss";
+import LocationItem from "../LocationItem/LocationItem";
+import { Loader } from "../Loader/Loader";
 
 export default function LocationList() {
   const { data, isLoading } = useFetch("http://localhost:5000/hotels");
@@ -7,28 +9,17 @@ export default function LocationList() {
   return (
     <div className={styles.nearbyLocations}>
       {isLoading ? (
-        <p>Loading ...</p>
+        <Loader />
       ) : (
         <>
           <h2>Nearby Locations</h2>
           <div className={styles.locationList}>
             {data.map((item) => (
-              <LocationItem key={item.id} {...item} />
+              <LocationItem key={item.id} styles={styles} {...item} />
             ))}
           </div>
         </>
       )}
-    </div>
-  );
-}
-
-function LocationItem({ id, smart_location, price, name, picture_url }) {
-  return (
-    <div className={styles.locationItem}>
-      <img onError={e=>e.currentTarget.src="../../assets/placeholder.png"}src={picture_url.url} alt={name} />
-      <p className={styles.location}>{smart_location}</p>
-      <p className={styles.name}>{name}</p>
-      <p className={styles.price}>{price} € night</p>
     </div>
   );
 }

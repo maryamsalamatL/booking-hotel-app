@@ -7,12 +7,20 @@ import { MdLocationOn } from "react-icons/md";
 import "react-date-range/dist/theme/default.css";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
+import {
+  useNavigate,
+  createSearchParams,
+  useSearchParams,
+} from "react-router-dom";
 
 export default function Header() {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchParams] = useSearchParams();
+  const [destination, setDestination] = useState(
+    searchParams.get("destination") || ""
+  );
 
   const [openOptions, setOpenOptions] = useState(false);
-  const [options, setOptions] = useState({ adult: 3, children: 0, room: 1 });
+  const [options, setOptions] = useState({ adult: 1, children: 0, room: 1 });
 
   const [openDateRange, setOpenDateRange] = useState(false);
   const [date, setDate] = useState([
@@ -22,12 +30,23 @@ export default function Header() {
       key: "selection",
     },
   ]);
+  const navigate = useNavigate();
 
   const handleOptions = (name, operation) => {
     setOptions((prevState) => ({
       ...prevState,
       [name]: operation === "inc" ? prevState[name] + 1 : prevState[name] - 1,
     }));
+  };
+
+  const handleSearch = () => {
+    const encodedParams = createSearchParams({
+      date: JSON.stringify(date),
+      options: JSON.stringify(options),
+      destination,
+    });
+
+    navigate({ pathname: "/hotels", search: encodedParams.toString() });
   };
 
   return (
@@ -37,8 +56,8 @@ export default function Header() {
         <input
           type="text"
           placeholder="Where to go?"
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
+          value={destination}
+          onChange={(e) => setDestination(e.target.value)}
         />
       </div>
       <div className={styles.headerFilters}>
@@ -48,7 +67,7 @@ export default function Header() {
             id="dateDropDown"
             onClick={() => setOpenDateRange(!openDateRange)}
           >
-            {format(date[0].startDate, "MM/dd/yyyy")} <span>To</span>
+            {format(date[0].startDate, "MM/dd/yyyy")} <span>to</span>
             {format(date[0].endDate, "MM/dd/yyyy")}
           </div>
           {openDateRange && (
@@ -77,7 +96,7 @@ export default function Header() {
           )}
         </div>
       </div>
-      <button className={styles.searchButton}>
+      <button onClick={handleSearch} className={styles.searchButton}>
         {/* <HiSearch className={styles.searchIcon} /> */}
         Search
       </button>

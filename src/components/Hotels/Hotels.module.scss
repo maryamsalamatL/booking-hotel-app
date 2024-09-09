@@ -1,0 +1,37 @@
+@use "../../index.scss";
+
+.hotelsList {
+  .locationItem {
+    width: 100%;
+    background-color: index.$white-color;
+    border-radius: index.$border-radius;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 80px auto;
+    gap: 10px;
+    height: 100px;
+
+    p {
+      height: 15px;
+    }
+
+    .imgBox {
+      grid-column: 1/2;
+      grid-row: 1/4;
+      height: 80px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: index.$border-radius;
+    }
+
+    .name,
+    .price {
+      font-size: 14px;
+      color: index.$secondary-font-color;
+    }
+  }
+}
