@@ -4,7 +4,7 @@
   flex-direction: column-reverse;
   gap: 1rem;
 
-  .map {
+  .mapContainer {
     width: 100%;
     height: 30vh;
   }
@@ -18,7 +18,7 @@
   .hotelsLayout {
     flex-direction: row;
 
-    .map {
+    .mapContainer {
       width: 50%;
       height: 100vh;
     }

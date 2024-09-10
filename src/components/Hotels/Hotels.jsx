@@ -12,7 +12,10 @@ export default function Hotels() {
   return (
     <div className={styles.hotelsList}>
       {hotels.map((item) => (
-        <Link key={item.id} to={item.id}>
+        <Link
+          key={item.id}
+          to={`${item.id}?lat=${item.latitude}&lng=${item.longitude}`}
+        >
           <LocationItem styles={styles} {...item} />
         </Link>
       ))}

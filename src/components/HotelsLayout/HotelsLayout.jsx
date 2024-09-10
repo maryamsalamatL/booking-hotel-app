@@ -10,7 +10,9 @@ export default function HotelsLayout() {
         <div className={styles.sidebar}>
           <Outlet />
         </div>
-        <Map />
+        <div className={styles.mapContainer}>
+          <Map />
+        </div>
       </HotelsProvider>
     </div>
   );
