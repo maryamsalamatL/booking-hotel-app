@@ -1,13 +1,17 @@
 import { Outlet } from "react-router-dom";
 import styles from "./HotelsLayout.module.scss";
+import HotelsProvider from "../context/HotelsProvider";
+import Map from "../Map/Map";
 
 export default function HotelsLayout() {
   return (
     <div className={styles.hotelsLayout}>
-      <div className={styles.sidebar}>
-        <Outlet />
-      </div>
-      <div className={styles.map}>location</div>
+      <HotelsProvider>
+        <div className={styles.sidebar}>
+          <Outlet />
+        </div>
+        <Map />
+      </HotelsProvider>
     </div>
   );
 }
