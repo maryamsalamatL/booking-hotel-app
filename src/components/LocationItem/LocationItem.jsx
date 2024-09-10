@@ -2,7 +2,7 @@ export default function LocationItem({
   smart_location,
   price,
   name,
-  picture_url,
+  thumbnail_url,
   styles,
 }) {
   return (
@@ -12,7 +12,7 @@ export default function LocationItem({
           onError={(e) =>
             (e.currentTarget.src = "../../assets/placeholder.png")
           }
-          src={picture_url.url}
+          src={thumbnail_url}
           alt={name}
         />
       </div>
