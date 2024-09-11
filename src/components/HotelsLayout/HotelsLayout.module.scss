@@ -17,15 +17,17 @@
 @media only screen and (min-width: 600px) {
   .hotelsLayout {
     flex-direction: row;
+    // header height : 70px
+    height: calc(100vh - 70px);
 
     .mapContainer {
       width: 50%;
-      height: 100vh;
+      height: 100%;
     }
 
     .sidebar {
       width: 50%;
-      height: 100vh;
+      height: 100%;
       overflow-y: scroll;
     }
   }
