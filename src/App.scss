@@ -27,6 +27,20 @@
   background-color: rgba(225, 225, 231, 51%);
 }
 
+.map-button {
+  position: absolute;
+  z-index: 1000;
+  bottom: 5px;
+  left: 5px;
+  background-color: index.$light-blue;
+  color: index.$white-color;
+  border-radius: 10px;
+  padding: 2px 5px;
+  font-weight: bold;
+  font-size: 10px;
+  box-shadow: 0 0 10px  rgba(35, 87, 207, 0.535);
+}
+
 // DateRange style
 .rdrMonth {
   width: 24.667em !important;
