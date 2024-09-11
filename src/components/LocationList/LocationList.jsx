@@ -1,7 +1,7 @@
 import useFetch from "../../hooks/useFetch";
 import styles from "./LocationList.module.scss";
 import LocationItem from "../LocationItem/LocationItem";
-import { Loader } from "../Loader/Loader";
+import Loader from "../Loader/Loader";
 
 export default function LocationList() {
   const { data, isLoading } = useFetch("http://localhost:5000/hotels");

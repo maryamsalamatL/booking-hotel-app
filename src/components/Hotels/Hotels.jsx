@@ -1,4 +1,4 @@
-import { Loader } from "../Loader/Loader";
+import Loader from "../Loader/Loader";
 import styles from "./Hotels.module.scss";
 import LocationItem from "../LocationItem/LocationItem";
 import { Link } from "react-router-dom";
