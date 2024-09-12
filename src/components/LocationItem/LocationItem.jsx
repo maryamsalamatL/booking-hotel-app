@@ -1,12 +1,21 @@
+import { useCurrentHotelId } from "../context/HotelsProvider";
+
 export default function LocationItem({
+  id,
   smart_location,
   price,
   name,
   thumbnail_url,
   styles,
 }) {
+  const currentHotelId = useCurrentHotelId();
+
   return (
-    <div className={styles.locationItem}>
+    <div
+      className={`${styles.locationItem} ${
+        id === currentHotelId ? "currentHotel" : ""
+      }`}
+    >
       <div className={styles.imgBox}>
         <img
           onError={(e) =>

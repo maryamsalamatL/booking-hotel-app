@@ -38,12 +38,25 @@
   padding: 2px 5px;
   font-weight: bold;
   font-size: 10px;
-  box-shadow: 0 0 10px  rgba(35, 87, 207, 0.535);
+  box-shadow: 0 0 10px rgba(35, 87, 207, 0.535);
+}
+
+.currentHotel {
+  background-color: rgb(33 44 70 / 10%) !important;
 }
 
 // DateRange style
 .rdrMonth {
   width: 24.667em !important;
+}
+
+// leaflet style
+.leaflet-container {
+  border-radius: index.$border-radius;
+}
+
+.leaflet-control-attribution {
+  visibility: hidden;
 }
 
 @media only screen and (min-width: 600px) {

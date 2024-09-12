@@ -1,8 +1,10 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
 const hotelsContext = createContext();
+const currentHotelIdContext = createContext();
+const currentHotelIdSetterContext = createContext();
 
 export default function HotelsProvider({ children }) {
   const [searchParams] = useSearchParams();
@@ -10,6 +12,7 @@ export default function HotelsProvider({ children }) {
   const options = JSON.parse(searchParams.get("options"));
   const room = options?.room;
   const requiredBeds = options?.adult + options?.children;
+  const [currentHotelId, setCurrentHotelId] = useState(null);
 
   const { isLoading, data: hotels } = useFetch(
     "http://localhost:5000/hotels",
@@ -18,9 +21,16 @@ export default function HotelsProvider({ children }) {
 
   return (
     <hotelsContext.Provider value={{ hotels, isLoading }}>
-      {children}
+      <currentHotelIdContext.Provider value={currentHotelId}>
+        <currentHotelIdSetterContext.Provider value={setCurrentHotelId}>
+          {children}
+        </currentHotelIdSetterContext.Provider>
+      </currentHotelIdContext.Provider>
     </hotelsContext.Provider>
   );
 }
 
 export const useHotels = () => useContext(hotelsContext);
+export const useCurrentHotelId = () => useContext(currentHotelIdContext);
+export const useSetCurrentHotelId = () =>
+  useContext(currentHotelIdSetterContext);
