@@ -1,0 +1,14 @@
+@use "../../index.scss";
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+.bookmarkItem {
+  width: 100%;
+  background-color: index.$white-color;
+  border-radius: index.$border-radius;
+  margin-bottom: 10px;
+  padding: 10px;
+  height: max-content;
+}

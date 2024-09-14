@@ -6,21 +6,34 @@ import { Route, Routes } from "react-router-dom";
 import HotelsLayout from "./components/HotelsLayout/HotelsLayout";
 import SingleHotel from "./components/SingleHotel/SingleHotel";
 import Hotels from "./components/Hotels/Hotels";
+import HotelsProvider from "./components/context/HotelsProvider";
+import BookmarksLayout from "./components/BookmarksLayout/BookmarksLayout";
+import BookmarksProvider from "./components/context/BookmarksProvider";
+import Bookmarks from "./components/Bookmarks/Bookmarks";
 
 export default function App() {
   return (
-    <div className="app">
-      <Toaster />
-      {/* TODO : before for header insted */}
-      <div className="headerBackLayer"></div>
-      <Header />
-      <Routes>
-        <Route path="/" element={<LocationList />} />
-        <Route path="/hotels" element={<HotelsLayout />}>
-          <Route index element={<Hotels />} />
-          <Route path=":id" element={<SingleHotel />} />
-        </Route>
-      </Routes>
-    </div>
+    <HotelsProvider>
+      <BookmarksProvider>
+        <div className="app">
+          <Toaster />
+          {/* TODO : before for header insted */}
+          <div className="headerBackLayer"></div>
+          <Header />
+          <Routes>
+            <Route path="/" element={<LocationList />} />
+            <Route path="/hotels" element={<HotelsLayout />}>
+              <Route index element={<Hotels />} />
+              <Route path=":id" element={<SingleHotel />} />
+            </Route>
+            <Route path="/bookmarks" element={<BookmarksLayout />}>
+              <Route index element={<Bookmarks />} />
+              <Route path=":id" element={<div>single bookmark</div>} />
+              <Route path="add" element={<div>add bookmark</div>} />
+            </Route>
+          </Routes>
+        </div>
+      </BookmarksProvider>
+    </HotelsProvider>
   );
 }

@@ -1,12 +1,18 @@
 import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useHotels } from "../context/HotelsProvider";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMap,
+  useMapEvents,
+} from "react-leaflet";
 import useGeolocation from "../../hooks/useGeolocation";
 
-export default function Map() {
-  const { hotels } = useHotels();
+export default function Map({ markerLocations }) {
   const [searchParams] = useSearchParams();
   const lat = searchParams.get("lat");
   const lng = searchParams.get("lng");
@@ -41,7 +47,8 @@ export default function Map() {
         url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
       />
       <ChangeCenter position={mapCenter} />
-      {hotels.map((item) => (
+      <DetectClick />
+      {markerLocations.map((item) => (
         <Marker key={item.id} position={[item.latitude, item.longitude]}>
           <Popup>{item.smart_location}</Popup>
         </Marker>
@@ -53,5 +60,16 @@ export default function Map() {
 function ChangeCenter({ position }) {
   const map = useMap();
   map.setView(position);
+  return null;
+}
+
+function DetectClick() {
+  const navigate = useNavigate();
+  useMapEvents({
+    click(e) {
+      navigate(`/bookmarks/add?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
+    },
+  });
+
   return null;
 }

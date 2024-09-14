@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
-import styles from "./HotelsLayout.module.scss";
+import styles from "../HotelsLayout/HotelsLayout.module.scss";
 import Map from "../Map/Map";
-import { useHotels } from "../context/HotelsProvider";
+import { useBookmarks } from "../context/BookmarksProvider";
 
-export default function HotelsLayout() {
-  const { hotels } = useHotels();
+export default function BookmarksLayout() {
+  const { bookmarks } = useBookmarks();
 
   return (
     <div className={styles.hotelsLayout}>
@@ -12,7 +12,7 @@ export default function HotelsLayout() {
         <Outlet />
       </div>
       <div className={styles.mapContainer}>
-        <Map markerLocations={hotels} />
+        <Map markerLocations={bookmarks} />
       </div>
     </div>
   );
