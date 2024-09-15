@@ -10,6 +10,7 @@ import HotelsProvider from "./components/context/HotelsProvider";
 import BookmarksLayout from "./components/BookmarksLayout/BookmarksLayout";
 import BookmarksProvider from "./components/context/BookmarksProvider";
 import Bookmarks from "./components/Bookmarks/Bookmarks";
+import SingleBookmark from "./components/SingleBookmark/SingleBookmark";
 
 export default function App() {
   return (
@@ -28,7 +29,7 @@ export default function App() {
             </Route>
             <Route path="/bookmarks" element={<BookmarksLayout />}>
               <Route index element={<Bookmarks />} />
-              <Route path=":id" element={<div>single bookmark</div>} />
+              <Route path=":id" element={<SingleBookmark />} />
               <Route path="add" element={<div>add bookmark</div>} />
             </Route>
           </Routes>
