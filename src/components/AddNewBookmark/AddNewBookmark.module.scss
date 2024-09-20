@@ -1,0 +1,48 @@
+@use "../../index.scss";
+
+form {
+  padding: 5px;
+}
+
+.formControl {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  label {
+    color: index.$secondary-font-color;
+  }
+
+  input {
+    width: 100%;
+    background-color: index.$white-color;
+    margin-bottom: 15px;
+    border-radius: index.$border-radius;
+    padding: 10px;
+    box-shadow: 0 0 10px #d2d3dc45;
+  }
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 1rem;
+
+  button {
+    padding: 5px;
+    width: 50%;
+    border-radius: 5px;
+  }
+
+  .addBtn {
+    color: index.$white-color;
+    background-color: index.$light-blue;
+  }
+
+  .backBtn {
+    border: 1px solid index.$light-blue;
+    color: index.$light-blue;
+  }
+}

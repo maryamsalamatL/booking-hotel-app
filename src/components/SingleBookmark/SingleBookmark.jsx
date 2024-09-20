@@ -6,7 +6,9 @@ import Loader from "../Loader/Loader";
 
 export default function SingleBookmark() {
   const { id } = useParams();
-  const { isLoading, data } = useFetch(`http://localhost:5000/bookmarks/${id}`);
+  const { isLoading, data } = useFetch(
+    `${process.env.REACT_APP_BASE_URL}/bookmarks/${id}`
+  );
   const { cityName } = data;
   const setCurrentBookmarkId = useSetCurrentBookmarkId();
   const navigate = useNavigate();

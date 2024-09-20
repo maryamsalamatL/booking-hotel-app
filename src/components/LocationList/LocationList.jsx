@@ -4,7 +4,7 @@ import LocationItem from "../LocationItem/LocationItem";
 import Loader from "../Loader/Loader";
 
 export default function LocationList() {
-  const { data, isLoading } = useFetch("http://localhost:5000/hotels");
+  const { data, isLoading } = useFetch(`${process.env.REACT_APP_BASE_URL}/hotels`);
 
   return (
     <div className={styles.nearbyLocations}>

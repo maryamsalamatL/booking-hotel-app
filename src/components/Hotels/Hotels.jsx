@@ -11,6 +11,7 @@ export default function Hotels() {
 
   return (
     <div className={styles.hotelsList}>
+      <h2>Search Result({hotels.length})</h2>
       {hotels.map((item) => (
         <Link
           key={item.id}

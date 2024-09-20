@@ -15,7 +15,7 @@ export default function HotelsProvider({ children }) {
   const [currentHotelId, setCurrentHotelId] = useState(null);
 
   const { isLoading, data: hotels } = useFetch(
-    "http://localhost:5000/hotels",
+    `${process.env.REACT_APP_BASE_URL}/hotels`,
     `q=${destination || ""}&accommodates_gte=${room}&beds_gte=${requiredBeds}`
   );
 

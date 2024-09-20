@@ -11,11 +11,10 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import useGeolocation from "../../hooks/useGeolocation";
+import useUrlLocation from "../../hooks/useUrlLocation";
 
 export default function Map({ markerLocations }) {
-  const [searchParams] = useSearchParams();
-  const lat = searchParams.get("lat");
-  const lng = searchParams.get("lng");
+  const { lat, lng } = useUrlLocation();
   const [mapCenter, setMapCenter] = useState([40, 30]);
   const {
     getPosition,

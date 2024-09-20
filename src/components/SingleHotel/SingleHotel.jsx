@@ -7,11 +7,13 @@ import { useEffect } from "react";
 
 export default function SingleHotel() {
   const { id } = useParams();
-  const { isLoading, data } = useFetch(`http://localhost:5000/hotels/${id}`);
+  const { isLoading, data } = useFetch(
+    `${process.env.REACT_APP_BASE_URL}/hotels/${id}`
+  );
   const { name, smart_location, xl_picture_url, number_of_reviews } = data;
 
   const setCurrentHotelId = useSetCurrentHotelId();
-  
+
   useEffect(() => {
     setCurrentHotelId(id);
   }, [id]);
