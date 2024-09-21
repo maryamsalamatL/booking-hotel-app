@@ -10,14 +10,12 @@ export default function BookmarksProvider({ children }) {
   const [currentBookmarkId, setCurrentBookmarkId] = useState(null);
   const [bookmarks, setBookmarks] = useState([]);
   const [isLoading, setIsLoading] = useState(null);
-  
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   const fetchBookmarks = async () => {
     setIsLoading(true);
     try {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/bookmarks`
-      );
+      const { data } = await axios.get(`${BASE_URL}/bookmarks`);
       setBookmarks(data);
     } catch (error) {
       toast.error(error.response?.data.error || error.message);
@@ -27,12 +25,29 @@ export default function BookmarksProvider({ children }) {
   };
 
   const createBookmark = async (newBookmark) => {
-    await axios.post(
-      `${process.env.REACT_APP_BASE_URL}/bookmarks`,
-      newBookmark
-    );
+    setIsLoading(true);
 
-    fetchBookmarks();
+    try {
+      await axios.post(`${BASE_URL}/bookmarks`, newBookmark);
+      await fetchBookmarks();
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const deleteBookmark = async (id) => {
+    setIsLoading(true);
+
+    try {
+      await axios.delete(`${BASE_URL}/bookmarks/${id}`);
+      await fetchBookmarks();
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -40,7 +55,9 @@ export default function BookmarksProvider({ children }) {
   }, []);
 
   return (
-    <bookmarksContext.Provider value={{ bookmarks, isLoading, createBookmark }}>
+    <bookmarksContext.Provider
+      value={{ bookmarks, isLoading, createBookmark, deleteBookmark }}
+    >
       <currentBookmarkIdContext.Provider value={currentBookmarkId}>
         <currentBookmarkIdSetterContext.Provider value={setCurrentBookmarkId}>
           {children}

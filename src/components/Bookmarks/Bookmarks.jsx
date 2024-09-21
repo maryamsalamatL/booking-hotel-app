@@ -6,12 +6,14 @@ import {
   useCurrentBookmarkId,
 } from "../context/BookmarksProvider";
 import ReactCountryFlag from "react-country-flag";
+import { HiTrash } from "react-icons/hi";
 
 export default function Bookmarks() {
-  const { bookmarks, isLoading } = useBookmarks();
+  const { bookmarks, isLoading, deleteBookmark } = useBookmarks();
   const currentBookmarkId = useCurrentBookmarkId();
 
   if (isLoading) return <Loader />;
+  if (!bookmarks.length) return <p>there is no bookmarked location.</p>;
 
   return (
     <div>
@@ -28,9 +30,19 @@ export default function Bookmarks() {
                 : ""
             }`}
           >
-            <ReactCountryFlag svg countryCode={item.countryCode} />
-            &nbsp;
-            <strong>{item.cityName}</strong>&nbsp;{item.country}
+            <p>
+              <ReactCountryFlag svg countryCode={item.countryCode} />
+              &nbsp;
+              <strong>{item.cityName}</strong>&nbsp;{item.country}
+            </p>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                deleteBookmark(item.id);
+              }}
+            >
+              <HiTrash />
+            </button>
           </div>
         </Link>
       ))}
