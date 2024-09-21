@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -6,50 +12,102 @@ const bookmarksContext = createContext();
 const currentBookmarkIdContext = createContext();
 const currentBookmarkIdSetterContext = createContext();
 
+const initialState = {
+  isLoading: false,
+  bookmarks: [],
+  error: null,
+};
+
+const bookmarksReducer = (state, { type, payload }) => {
+  switch (type) {
+    case "loading":
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case "bookmarks/loaded":
+      return {
+        ...state,
+        isLoading: false,
+        bookmarks: payload,
+      };
+    case "bookmark/created":
+      return {
+        ...state,
+        isLoading: false,
+        bookmarks: [...state.bookmarks, payload],
+      };
+    case "bookmark/deleted":
+      return {
+        ...state,
+        isLoading: false,
+        bookmarks: state.bookmarks.filter((item) => item.id !== payload),
+      };
+    case "rejected":
+      return {
+        ...state,
+        isLoading: false,
+        error: payload,
+      };
+    default:
+      throw new Error("Unknown action type!");
+  }
+};
+
 export default function BookmarksProvider({ children }) {
   const [currentBookmarkId, setCurrentBookmarkId] = useState(null);
-  const [bookmarks, setBookmarks] = useState([]);
-  const [isLoading, setIsLoading] = useState(null);
   const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const [{ isLoading, error, bookmarks }, dispatch] = useReducer(
+    bookmarksReducer,
+    initialState
+  );
 
   useEffect(() => {
     const fetchBookmarks = async () => {
-      setIsLoading(true);
+      dispatch({ type: "loading" });
       try {
         const { data } = await axios.get(`${BASE_URL}/bookmarks`);
-        setBookmarks(data);
+        dispatch({ type: "bookmarks/loaded", payload: data });
       } catch (error) {
-        toast.error(error.response?.data.error || error.message);
-      } finally {
-        setIsLoading(false);
+        dispatch({
+          type: "rejected",
+          payload: error.message,
+        });
       }
     };
     fetchBookmarks();
   }, []);
 
+  useEffect(() => {
+    if (error) toast.error(error);
+  }, [error]);
+
   const createBookmark = async (newBookmark) => {
-    setIsLoading(true);
+    dispatch({ type: "loading" });
 
     try {
-      await axios.post(`${BASE_URL}/bookmarks`, newBookmark);
-      setBookmarks((prevState) => [...prevState, newBookmark]);
+      const { data } = await axios.post(`${BASE_URL}/bookmarks`, newBookmark);
+      dispatch({ type: "bookmark/created", payload: data });
+      setCurrentBookmarkId(data.id);
     } catch (error) {
-      toast.error(error.message);
-    } finally {
-      setIsLoading(false);
+      dispatch({
+        type: "rejected",
+        payload: error.message,
+      });
     }
   };
 
   const deleteBookmark = async (id) => {
-    setIsLoading(true);
+    dispatch({ type: "loading" });
 
     try {
       await axios.delete(`${BASE_URL}/bookmarks/${id}`);
-      setBookmarks((prevState) => prevState.filter((item) => item.id !== id));
+      dispatch({ type: "bookmark/deleted", payload: id });
     } catch (error) {
-      toast.error(error.message);
-    } finally {
-      setIsLoading(false);
+      dispatch({
+        type: "rejected",
+        payload: error.message,
+      });
     }
   };
 
