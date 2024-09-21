@@ -12,24 +12,27 @@ export default function BookmarksProvider({ children }) {
   const [isLoading, setIsLoading] = useState(null);
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-  const fetchBookmarks = async () => {
-    setIsLoading(true);
-    try {
-      const { data } = await axios.get(`${BASE_URL}/bookmarks`);
-      setBookmarks(data);
-    } catch (error) {
-      toast.error(error.response?.data.error || error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  useEffect(() => {
+    const fetchBookmarks = async () => {
+      setIsLoading(true);
+      try {
+        const { data } = await axios.get(`${BASE_URL}/bookmarks`);
+        setBookmarks(data);
+      } catch (error) {
+        toast.error(error.response?.data.error || error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchBookmarks();
+  }, []);
 
   const createBookmark = async (newBookmark) => {
     setIsLoading(true);
 
     try {
       await axios.post(`${BASE_URL}/bookmarks`, newBookmark);
-      await fetchBookmarks();
+      setBookmarks((prevState) => [...prevState, newBookmark]);
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -42,17 +45,13 @@ export default function BookmarksProvider({ children }) {
 
     try {
       await axios.delete(`${BASE_URL}/bookmarks/${id}`);
-      await fetchBookmarks();
+      setBookmarks((prevState) => prevState.filter((item) => item.id !== id));
     } catch (error) {
       toast.error(error.message);
     } finally {
       setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    fetchBookmarks();
-  }, []);
 
   return (
     <bookmarksContext.Provider
