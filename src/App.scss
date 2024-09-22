@@ -66,6 +66,25 @@
   align-items: center;
 }
 
+.formControl {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  label {
+    color: index.$secondary-font-color;
+  }
+
+  input {
+    width: 100%;
+    background-color: index.$white-color;
+    margin-bottom: 15px;
+    border-radius: index.$border-radius;
+    padding: 10px;
+    box-shadow: 0 0 10px #d2d3dc45;
+  }
+}
+
 // DateRange style
 .rdrMonth {
   width: 24.667em !important;

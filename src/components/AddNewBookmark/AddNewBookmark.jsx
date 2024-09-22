@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../Loader/Loader";
 import { useBookmarks } from "../context/BookmarksProvider";
+import Input from "../Input/Input";
 
 const BASE_GEOCODING_URL = "https://us1.locationiq.com/v1/reverse";
 
@@ -79,26 +80,8 @@ export default function AddNewBookmark() {
     <div>
       <h2>Bookmark New Location</h2>
       <form onSubmit={handleSubmit}>
-        <div className={styles.formControl}>
-          <label htmlFor="city">city :</label>
-          <input
-            value={city}
-            type="text"
-            id="city"
-            name="city"
-            onChange={(e) => setCity(e.target.value)}
-          />
-        </div>
-        <div className={styles.formControl}>
-          <label htmlFor="country">country :</label>
-          <input
-            value={country}
-            type="text"
-            id="country"
-            name="country"
-            onChange={(e) => setCountry(e.target.value)}
-          />
-        </div>
+        <Input label="city" value={city} onChange={setCity} />
+        <Input label="country" value={country} onChange={setCountry} />
         <div className={styles.buttons}>
           <button
             className="secondaryBtn"
