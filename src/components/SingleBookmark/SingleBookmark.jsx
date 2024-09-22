@@ -3,13 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSetCurrentBookmarkId } from "../context/BookmarksProvider";
 import useFetch from "../../hooks/useFetch";
 import Loader from "../Loader/Loader";
+import ReactCountryFlag from "react-country-flag";
 
 export default function SingleBookmark() {
   const { id } = useParams();
   const { isLoading, data } = useFetch(
     `${process.env.REACT_APP_BASE_URL}/bookmarks/${id}`
   );
-  const { cityName } = data;
+  const { cityName, country, countryCode } = data;
   const setCurrentBookmarkId = useSetCurrentBookmarkId();
   const navigate = useNavigate();
 
@@ -21,9 +22,15 @@ export default function SingleBookmark() {
 
   return (
     <div>
-      <h2>{cityName}</h2>
-      <button onClick={() => navigate(-1)}>&larr; Back</button>
-      {/* TODO: implement this component */}
+      <div>
+        <h2 className="centralize">
+          <ReactCountryFlag countryCode={countryCode} svg /> &nbsp;
+          {cityName} - {country}
+        </h2>
+      </div>
+      <button onClick={() => navigate(-1)} className="secondaryBtn">
+        &larr; Back
+      </button>
     </div>
   );
 }
