@@ -30,7 +30,13 @@ export default function AddNewBookmark() {
         const { data } = await axios.get(
           `${BASE_GEOCODING_URL}?key=${API_KEY}&lat=${lat}&lon=${lng}&format=json&`
         );
-        setCity(data.address.city || data.address.town);
+
+        setCity(
+          data.address.city ||
+            data.address.town ||
+            data.address.municipality ||
+            data.address.state
+        );
         setCountry(data.address.country);
         setCountryCode(data.address.country_code);
       } catch (error) {
