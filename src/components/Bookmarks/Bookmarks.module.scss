@@ -13,4 +13,8 @@ h2 {
   height: max-content;
   display: flex;
   justify-content: space-between;
+
+  .icon {
+    font-size: 1rem;
+  }
 }

@@ -45,6 +45,27 @@
   background-color: rgb(33 44 70 / 10%) !important;
 }
 
+.primaryBtn,
+.secondaryBtn {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.primaryBtn {
+  color: index.$white-color;
+  background-color: index.$light-blue;
+}
+
+.secondaryBtn {
+  border: 1px solid index.$light-blue;
+  color: index.$light-blue;
+}
+
+.centralize {
+  display: flex;
+  align-items: center;
+}
+
 // DateRange style
 .rdrMonth {
   width: 24.667em !important;

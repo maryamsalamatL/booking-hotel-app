@@ -101,7 +101,7 @@ export default function AddNewBookmark() {
         </div>
         <div className={styles.buttons}>
           <button
-            className={styles.backBtn}
+            className="secondaryBtn"
             onClick={(e) => {
               e.preventDefault();
               navigate(-1);
@@ -109,7 +109,7 @@ export default function AddNewBookmark() {
           >
             &larr; Back
           </button>
-          <button className={styles.addBtn} type="submit">
+          <button className="primaryBtn" type="submit">
             Add
           </button>
         </div>

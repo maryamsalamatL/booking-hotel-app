@@ -6,7 +6,7 @@ import {
   useCurrentBookmarkId,
 } from "../context/BookmarksProvider";
 import ReactCountryFlag from "react-country-flag";
-import { HiTrash } from "react-icons/hi";
+import { BiTrash } from "react-icons/bi";
 
 export default function Bookmarks() {
   const { bookmarks, isLoading, deleteBookmark } = useBookmarks();
@@ -30,7 +30,7 @@ export default function Bookmarks() {
                 : ""
             }`}
           >
-            <p>
+            <p className="centralize">
               <ReactCountryFlag svg countryCode={item.countryCode} />
               &nbsp;
               <strong>{item.cityName}</strong>&nbsp;{item.country}
@@ -41,7 +41,7 @@ export default function Bookmarks() {
                 deleteBookmark(item.id);
               }}
             >
-              <HiTrash />
+              <BiTrash className={styles.icon} />
             </button>
           </div>
         </Link>
