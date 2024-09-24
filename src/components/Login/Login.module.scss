@@ -1,0 +1,31 @@
+@use "../../index.scss";
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+
+  .form {
+    width: 100%;
+    max-width: 400px;
+    border-radius: index.$border-radius;
+    border: 1px solid index.$dark-blue;
+    padding: 1rem;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .container {
+    .form {
+      width: 60%;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    .form {
+      width: 40%;
+    }
+  }
+}

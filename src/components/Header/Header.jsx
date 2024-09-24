@@ -6,12 +6,20 @@ import { DateRange } from "react-date-range";
 import { MdLocationOn } from "react-icons/md";
 import "react-date-range/dist/theme/default.css";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
-import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
+import {
+  HiCalendar,
+  HiLogout,
+  HiMinus,
+  HiPlus,
+  HiSearch,
+} from "react-icons/hi";
 import {
   useNavigate,
   createSearchParams,
   useSearchParams,
+  Link,
 } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 
 export default function Header() {
   const [searchParams] = useSearchParams();
@@ -100,6 +108,7 @@ export default function Header() {
         {/* <HiSearch className={styles.searchIcon} /> */}
         Search
       </button>
+      <User />
     </div>
   );
 }
@@ -164,5 +173,24 @@ function DateDropDown({ setOpenDateRange, children }) {
     <div ref={dateRef} className={`${styles.datePicker} ${styles.dropDown}`}>
       {children}
     </div>
+  );
+}
+
+function User() {
+  const { isAuthenticated, user, logout } = useAuth();
+
+  return (
+    <>
+      {isAuthenticated ? (
+        <div>
+          <p>{user.name}</p>
+          <button onClick={logout}>
+            <HiLogout />
+          </button>
+        </div>
+      ) : (
+        <Link to="/login">Login</Link>
+      )}
+    </>
   );
 }

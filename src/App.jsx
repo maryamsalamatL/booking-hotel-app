@@ -12,30 +12,35 @@ import BookmarksProvider from "./components/context/BookmarksProvider";
 import Bookmarks from "./components/Bookmarks/Bookmarks";
 import SingleBookmark from "./components/SingleBookmark/SingleBookmark";
 import AddNewBookmark from "./components/AddNewBookmark/AddNewBookmark";
+import Login from "./components/Login/Login";
+import AuthProvider from "./components/context/AuthProvider";
 
 export default function App() {
   return (
-    <HotelsProvider>
-      <BookmarksProvider>
-        <div className="app">
-          <Toaster />
-          {/* TODO : before for header insted */}
-          <div className="headerBackLayer"></div>
-          <Header />
-          <Routes>
-            <Route path="/" element={<LocationList />} />
-            <Route path="/hotels" element={<HotelsLayout />}>
-              <Route index element={<Hotels />} />
-              <Route path=":id" element={<SingleHotel />} />
-            </Route>
-            <Route path="/bookmarks" element={<BookmarksLayout />}>
-              <Route index element={<Bookmarks />} />
-              <Route path=":id" element={<SingleBookmark />} />
-              <Route path="add" element={<AddNewBookmark />} />
-            </Route>
-          </Routes>
-        </div>
-      </BookmarksProvider>
-    </HotelsProvider>
+    <AuthProvider>
+      <HotelsProvider>
+        <BookmarksProvider>
+          <div className="app">
+            <Toaster />
+            {/* TODO : before for header instead */}
+            <div className="headerBackLayer"></div>
+            <Header />
+            <Routes>
+              <Route path="/" element={<LocationList />} />
+              <Route path="/hotels" element={<HotelsLayout />}>
+                <Route index element={<Hotels />} />
+                <Route path=":id" element={<SingleHotel />} />
+              </Route>
+              <Route path="/bookmarks" element={<BookmarksLayout />}>
+                <Route index element={<Bookmarks />} />
+                <Route path=":id" element={<SingleBookmark />} />
+                <Route path="add" element={<AddNewBookmark />} />
+              </Route>
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </div>
+        </BookmarksProvider>
+      </HotelsProvider>
+    </AuthProvider>
   );
 }

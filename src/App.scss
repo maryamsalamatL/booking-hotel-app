@@ -85,6 +85,10 @@
   }
 }
 
+button:disabled {
+  opacity: 0.5;
+}
+
 // DateRange style
 .rdrMonth {
   width: 24.667em !important;
