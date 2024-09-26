@@ -15,6 +15,7 @@ import AddNewBookmark from "./components/AddNewBookmark/AddNewBookmark";
 import Login from "./components/Login/Login";
 import AuthProvider from "./components/context/AuthProvider";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import HeaderBackLayer from "./components/HeaderBackLayer/HeaderBackLayer";
 
 export default function App() {
   return (
@@ -23,8 +24,7 @@ export default function App() {
         <BookmarksProvider>
           <div className="app">
             <Toaster />
-            {/* TODO : before for header instead */}
-            <div className="headerBackLayer"></div>
+            <HeaderBackLayer />
             <Header />
             <Routes>
               <Route path="/" element={<LocationList />} />

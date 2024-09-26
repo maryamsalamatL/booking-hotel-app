@@ -2,9 +2,12 @@ import useFetch from "../../hooks/useFetch";
 import styles from "./LocationList.module.scss";
 import LocationItem from "../LocationItem/LocationItem";
 import Loader from "../Loader/Loader";
+import { Link } from "react-router-dom";
 
 export default function LocationList() {
-  const { data, isLoading } = useFetch(`${process.env.REACT_APP_BASE_URL}/hotels`);
+  const { data, isLoading } = useFetch(
+    `${process.env.REACT_APP_BASE_URL}/hotels`
+  );
 
   return (
     <div className={styles.nearbyLocations}>
@@ -15,7 +18,12 @@ export default function LocationList() {
           <h2>Nearby Locations</h2>
           <div className={styles.locationList}>
             {data.map((item) => (
-              <LocationItem key={item.id} styles={styles} {...item} />
+              <Link
+                key={item.id}
+                to={`/hotels/${item.id}?lat=${item.latitude}&lng=${item.longitude}`}
+              >
+                <LocationItem styles={styles} {...item} />
+              </Link>
             ))}
           </div>
         </>

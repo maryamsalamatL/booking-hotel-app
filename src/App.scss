@@ -1,18 +1,34 @@
 @use "./index.scss";
 
 .app {
-  position: relative;
   width: 100%;
 }
 
 .headerBackLayer {
   width: 100%;
   height: 100px;
-  position: fixed;
+  position: absolute;
   background-color: index.$dark-blue;
   z-index: -1;
   top: 0;
   left: 0;
+  padding: 10px 10px;
+  display: flex;
+  justify-content: space-between;
+
+  svg {
+    fill: index.$white-color;
+  }
+
+  p {
+    color: index.$white-color;
+  }
+
+  .box {
+    height: max-content;
+    display: flex;
+    align-items: center;
+  }
 }
 
 .verticalSeparator {
@@ -78,8 +94,8 @@
   input {
     width: 100%;
     background-color: index.$white-color;
-    margin-bottom: 15px;
-    border-radius: index.$border-radius;
+    margin-bottom: 10px;
+    border-radius: index.$inner-border-radius;
     padding: 10px;
     box-shadow: 0 0 10px #d2d3dc45;
   }
@@ -87,6 +103,10 @@
 
 button:disabled {
   opacity: 0.5;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 // DateRange style
@@ -108,7 +128,7 @@ button:disabled {
 
 @media only screen and (min-width: 768px) {
   .headerBackLayer {
-    height: 50px;
+    height: 70px;
   }
 
   .rdrMonth {

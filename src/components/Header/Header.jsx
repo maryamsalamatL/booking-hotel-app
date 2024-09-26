@@ -6,20 +6,12 @@ import { DateRange } from "react-date-range";
 import { MdLocationOn } from "react-icons/md";
 import "react-date-range/dist/theme/default.css";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
-import {
-  HiCalendar,
-  HiLogout,
-  HiMinus,
-  HiPlus,
-  HiSearch,
-} from "react-icons/hi";
+import { HiCalendar, HiMinus, HiPlus } from "react-icons/hi";
 import {
   useNavigate,
   createSearchParams,
   useSearchParams,
-  Link,
 } from "react-router-dom";
-import { useAuth } from "../context/AuthProvider";
 
 export default function Header() {
   const [searchParams] = useSearchParams();
@@ -70,12 +62,15 @@ export default function Header() {
       </div>
       <div className={styles.headerFilters}>
         <div className={styles.dateRange}>
-          <HiCalendar />
+          <div className={styles.dateIcon}>
+            <HiCalendar />
+          </div>
           <div
             id="dateDropDown"
             onClick={() => setOpenDateRange(!openDateRange)}
+            style={{ width: "100%" }}
           >
-            {format(date[0].startDate, "MM/dd/yyyy")} <span>to</span>
+            {format(date[0].startDate, "MM/dd/yyyy")} <span>to</span>{" "}
             {format(date[0].endDate, "MM/dd/yyyy")}
           </div>
           {openDateRange && (
@@ -91,9 +86,13 @@ export default function Header() {
         </div>
 
         <div className={styles.guestOptions}>
-          <div id="optionDropDown" onClick={() => setOpenOptions(!openOptions)}>
+          <div
+            id="optionDropDown"
+            style={{ width: "100%" }}
+            onClick={() => setOpenOptions(!openOptions)}
+          >
             {options.adult} Adult &bull; {options.children} Children &bull;
-            {options.room} Room &bull;
+            {options.room} Room
           </div>
           {openOptions && (
             <GuestOptionList
@@ -105,10 +104,8 @@ export default function Header() {
         </div>
       </div>
       <button onClick={handleSearch} className={styles.searchButton}>
-        {/* <HiSearch className={styles.searchIcon} /> */}
         Search
       </button>
-      <User />
     </div>
   );
 }
@@ -173,24 +170,5 @@ function DateDropDown({ setOpenDateRange, children }) {
     <div ref={dateRef} className={`${styles.datePicker} ${styles.dropDown}`}>
       {children}
     </div>
-  );
-}
-
-function User() {
-  const { isAuthenticated, user, logout } = useAuth();
-
-  return (
-    <>
-      {isAuthenticated ? (
-        <div>
-          <p>{user.name}</p>
-          <button onClick={logout}>
-            <HiLogout />
-          </button>
-        </div>
-      ) : (
-        <Link to="/login">Login</Link>
-      )}
-    </>
   );
 }
