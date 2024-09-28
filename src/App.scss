@@ -14,7 +14,9 @@
   left: 0;
   padding: 10px 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 15px;
+  font-size: 14px;
 
   svg {
     fill: index.$white-color;
@@ -28,6 +30,11 @@
     height: max-content;
     display: flex;
     align-items: center;
+  }
+
+  .user {
+    flex-grow: 1;
+    justify-content: flex-end;
   }
 }
 
