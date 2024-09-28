@@ -3,7 +3,8 @@
 .container {
   width: 100%;
   margin-top: 1rem;
-  //background-color: index.$white-color;
+  padding-bottom: 3rem;
+  position: relative;
 
   span {
     color: index.$secondary-font-color;
@@ -15,5 +16,76 @@
     height: 200px;
     border-radius: index.$border-radius;
     margin-top: 10px;
+  }
+}
+
+ul {
+  padding: 10px 0px;
+  margin: 1rem 0rem;
+
+  li {
+    padding: 5px 0px;
+    font-size: 14px;
+    border-bottom: 1px solid #cccccc45;
+  }
+}
+
+.description {
+  font-size: 15px;
+}
+
+.details {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.address {
+  margin-top: 1rem;
+
+  svg {
+    fill: index.$secondary-font-color;
+  }
+}
+
+.bookBtn {
+  width: calc(100% - 2rem);
+  height: 45px;
+  position: fixed;
+  bottom: 0;
+  background-color: index.$white-color;
+}
+
+@media only screen and (min-width: 600px) {
+  .container {
+    img {
+      height: 400px;
+    }
+  }
+
+  ul {
+    li {
+      font-size: 16px;
+    }
+  }
+
+  span {
+    font-size: 14px !important;
+  }
+
+  .name {
+    font-size: 18px;
+  }
+
+  .details {
+    font-size: 17px;
+  }
+
+  .description {
+    font-size: 17px;
+  }
+
+  .bookBtn {
+    width: calc(50% - 1.5rem);
+    height: 27px;
   }
 }
