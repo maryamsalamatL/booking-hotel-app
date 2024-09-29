@@ -1325,49 +1325,58 @@
   ],
   "bookmarks": [
     {
-      "cityName": "Abalessa",
-      "country": "Algeria",
-      "countryCode": "DZ",
-      "latitude": "23.18455079512732",
-      "longitude": "3.795523257510883",
-      "host_location": "Abalessa Algeria",
-      "id": 1
+      "cityName": "Elazığ",
+      "country": "Turkey",
+      "countryCode": "tr",
+      "latitude": "38.810820900566156",
+      "longitude": "39.030303955078125",
+      "host_location": "Elazığ - Turkey",
+      "id": 6
     },
     {
-      "cityName": "Mahidasht",
-      "country": "Iran (Islamic Republic of)",
-      "countryCode": "IR",
-      "latitude": "34.32869425037187",
-      "longitude": "46.724183117022086",
-      "host_location": "Mahidasht Iran (Islamic Republic of)",
-      "id": 4
+      "cityName": "Vestre Slidre",
+      "country": "Norway",
+      "countryCode": "no",
+      "latitude": "61.068916586277425",
+      "longitude": "8.869246640135705",
+      "host_location": "Vestre Slidre - Norway",
+      "id": 10
     },
     {
-      "cityName": "Sanandaj",
-      "country": "Iran (Islamic Republic of)",
-      "countryCode": "IR",
-      "latitude": "35.31372444726279",
-      "longitude": "47.03114358752335",
-      "host_location": "Sanandaj Iran (Islamic Republic of)",
-      "id": 5
+      "cityName": "Otjozondjupa",
+      "country": "Namibia",
+      "countryCode": "na",
+      "latitude": "-20.96143961409684",
+      "longitude": "18.40468855503038",
+      "host_location": "Otjozondjupa - Namibia",
+      "id": 11
     },
     {
-      "cityName": "A Dakhla Oasis",
-      "country": "Egypt",
-      "countryCode": "EG",
-      "latitude": "25.02090651422749",
-      "longitude": "29.09059588509316",
-      "host_location": "A Dakhla Oasis Egypt",
-      "id": 7
+      "cityName": "Pazaryeri",
+      "country": "Turkey",
+      "countryCode": "tr",
+      "latitude": "40.00013000958055",
+      "longitude": "30.000572204589847",
+      "host_location": "Pazaryeri - Turkey",
+      "id": 12
     },
     {
-      "cityName": "Baba Kot",
-      "country": "Pakistan",
-      "countryCode": "PK",
-      "latitude": "28.43528783183169",
-      "longitude": "67.78003711374224",
-      "host_location": "Baba Kot Pakistan",
-      "id": 8
+      "cityName": "Kavala",
+      "country": "Greece",
+      "countryCode": "gr",
+      "latitude": "40.94833438480022",
+      "longitude": "24.455566406250004",
+      "host_location": "Kavala - Greece",
+      "id": 14
+    },
+    {
+      "cityName": "Berlin",
+      "country": "Deutschland",
+      "countryCode": "de",
+      "latitude": "52.52134226762017",
+      "longitude": "13.402290344238283",
+      "host_location": "Berlin - Deutschland",
+      "id": 15
     }
   ]
 }
