@@ -38,7 +38,13 @@ export default function Map({ markerLocations }) {
       zoom={13}
       scrollWheelZoom={true}
     >
-      <button className="map-button" onClick={getPosition}>
+      <button
+        className="map-button"
+        onClick={(e) => {
+          e.preventDefault();
+          getPosition();
+        }}
+      >
         {isGeoLocationLoading ? "Loading ..." : "use your location"}
       </button>
       <TileLayer
