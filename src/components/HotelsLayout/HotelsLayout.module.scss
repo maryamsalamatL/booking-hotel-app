@@ -1,5 +1,4 @@
 .hotelsLayout {
-  padding: 1rem;
   display: flex;
   flex-direction: column-reverse;
   gap: 1rem;
@@ -17,7 +16,9 @@
 @media only screen and (min-width: 600px) {
   .hotelsLayout {
     flex-direction: row;
-    height: calc(100vh - 70px);
+    // total margin => 4.2rem
+    // header height => 70px
+    height: calc(100vh - (4.2rem + 70px));
 
     .mapContainer {
       width: 50%;

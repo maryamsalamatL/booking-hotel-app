@@ -7,7 +7,9 @@
   border-radius: index.$border-radius;
   padding: 10px;
   align-items: stretch;
-  margin: 2.2rem 1rem 0 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2000;
 }
 
 .headerSearch {
@@ -64,6 +66,7 @@
   .optionList {
     right: 0%;
     padding: 10px;
+    background-color: index.$light-gray;
 
     .optionItem {
       display: flex;
@@ -123,6 +126,7 @@
     flex-direction: row;
     align-items: center;
     gap: 10px;
+    height: 70px;
 
     .headerSearch {
       width: 50%;
