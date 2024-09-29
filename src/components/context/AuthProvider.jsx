@@ -4,8 +4,8 @@ import toast from "react-hot-toast";
 const authContext = createContext({});
 
 const initialState = {
-  user: null,
-  isAuthenticated: false,
+  user: JSON.parse(localStorage.getItem("user")) || null,
+  isAuthenticated: !!JSON.parse(localStorage.getItem("user")),
 };
 
 const authReducer = (state, { type, payload }) => {
@@ -34,10 +34,14 @@ export default function AuthProvider({ children }) {
   const login = (email, password) => {
     if (email === FAKE_USER.email && password === FAKE_USER.password) {
       dispatch({ type: "login", payload: FAKE_USER });
+      localStorage.setItem("user", JSON.stringify(FAKE_USER));
     } else toast.error("wrong email or password !");
   };
 
-  const logout = () => dispatch({ type: "logout" });
+  const logout = () => {
+    dispatch({ type: "logout" });
+    localStorage.removeItem("user");
+  };
 
   return (
     <authContext.Provider value={{ user, isAuthenticated, login, logout }}>
