@@ -1,0 +1,62 @@
+@use "../../index.scss";
+
+.mapButton {
+  position: absolute;
+  z-index: 1000;
+  bottom: 5px;
+  left: 5px;
+  background-color: index.$light-blue;
+  color: index.$white-color;
+  border-radius: 10px;
+  padding: 2px 5px;
+  font-weight: bold;
+  font-size: 10px;
+  box-shadow: 0 0 10px rgba(35, 87, 207, 0.535);
+}
+
+.mapTip {
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: index.$white-color;
+  z-index: 1999;
+  padding: 10px;
+  border-radius: index.$border-radius;
+  box-shadow: 0 0 10px rgba(34, 38, 46, 0.434);
+  transition: all 0.7s ease-in-out;
+
+  &.show {
+    animation: mapTip 0.7s ease-in-out;
+  }
+
+  &.hide {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+
+  button {
+    padding: 5px 15px;
+    margin-top: 5px;
+    float: right;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mapTip {
+    width: max-content;
+    top: 15px;
+    right: 15px;
+  }
+}
+
+@keyframes mapTip {
+  0% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

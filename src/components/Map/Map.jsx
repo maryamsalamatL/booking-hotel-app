@@ -1,3 +1,4 @@
+import styles from "./Map.module.scss";
 import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -32,33 +33,36 @@ export default function Map({ markerLocations }) {
   }, [getLocationPosition]);
 
   return (
-    <MapContainer
-      style={{ height: "100%" }}
-      center={mapCenter}
-      zoom={13}
-      scrollWheelZoom={true}
-    >
-      <button
-        className="map-button"
-        onClick={(e) => {
-          e.preventDefault();
-          getPosition();
-        }}
+    <>
+      <Tip />
+      <MapContainer
+        style={{ height: "100%" }}
+        center={mapCenter}
+        zoom={13}
+        scrollWheelZoom={true}
       >
-        {isGeoLocationLoading ? "Loading ..." : "use your location"}
-      </button>
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
-      />
-      <ChangeCenter position={mapCenter} />
-      <DetectClick />
-      {markerLocations.map((item) => (
-        <Marker key={item.id} position={[item.latitude, item.longitude]}>
-          <Popup>{item.smart_location}</Popup>
-        </Marker>
-      ))}
-    </MapContainer>
+        <button
+          className={styles.mapButton}
+          onClick={(e) => {
+            e.preventDefault();
+            getPosition();
+          }}
+        >
+          {isGeoLocationLoading ? "Loading ..." : "use your location"}
+        </button>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+        />
+        <ChangeCenter position={mapCenter} />
+        <DetectClick />
+        {markerLocations.map((item) => (
+          <Marker key={item.id} position={[item.latitude, item.longitude]}>
+            <Popup>{item.host_location}</Popup>
+          </Marker>
+        ))}
+      </MapContainer>
+    </>
   );
 }
 
@@ -77,4 +81,25 @@ function DetectClick() {
   });
 
   return null;
+}
+
+function Tip() {
+  const [isTipSeen, setIsTipSeen] = useState(!!localStorage.getItem("tip"));
+
+  const handleTip = () => {
+    setIsTipSeen(true);
+
+    localStorage.setItem("tip", JSON.stringify(true));
+  };
+
+  return (
+    <div
+      className={`${styles.mapTip} ${isTipSeen ? styles.hide : styles.show}`}
+    >
+      <p>Click on map to bookmark any location.</p>
+      <button className="primaryBtn" onClick={handleTip}>
+        Ok
+      </button>
+    </div>
+  );
 }
