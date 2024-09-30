@@ -4,7 +4,6 @@ import toast from "react-hot-toast";
 export default function useGeolocation() {
   const [isLoading, setIsLoading] = useState(false);
   const [position, setPosition] = useState(null);
-  // const [error, setError] = useState(null);
 
   const getPosition = () => {
     if (!navigator.geolocation)

@@ -5,6 +5,7 @@ import Loader from "../Loader/Loader";
 import { useSetCurrentHotelId } from "../context/HotelsProvider";
 import { useEffect } from "react";
 import { MdLocationOn } from "react-icons/md";
+import toast from "react-hot-toast";
 
 export default function SingleHotel() {
   const { id } = useParams();
@@ -90,7 +91,16 @@ export default function SingleHotel() {
             <MdLocationOn />
             <span>{street}</span>
           </p>
-          <button className={`secondaryBtn ${styles.bookBtn}`}>Book Now</button>
+          <button
+            className={`secondaryBtn ${styles.bookBtn}`}
+            onClick={() =>
+              toast(
+                "come on buddy! what are you booking? this is just a practice project😁"
+              )
+            }
+          >
+            Book Now
+          </button>
         </>
       )}
     </div>
