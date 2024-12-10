@@ -21,7 +21,7 @@ export default function LocationList() {
               <Link
                 key={item.id}
                 to={`/hotels/${item.id}?lat=${item.latitude}&lng=${item.longitude}`}
-                data-cy="location-item"
+                data-cy="location-item-link"
               >
                 <LocationItem styles={styles} {...item} />
               </Link>

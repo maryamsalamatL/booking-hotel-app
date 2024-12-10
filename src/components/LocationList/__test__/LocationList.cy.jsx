@@ -1,4 +1,4 @@
-import LocationList from "./LocationList";
+import LocationList from "../LocationList";
 
 describe("testing LocationList: ", () => {
   beforeEach(() => cy.mount(<LocationList />));
@@ -12,7 +12,7 @@ describe("testing LocationList: ", () => {
   });
 
   it("should fetch location items", () => {
-    cy.getByDataCy("location-item").should("exist");
+    cy.getByDataCy("location-item-link").should("exist");
   });
 
   // navigation tests with e2e test
