@@ -15,6 +15,7 @@ export default function LocationItem({
       className={`${styles.locationItem} ${
         id === currentHotelId ? "currentHotel" : ""
       }`}
+      data-cy='location-item'
     >
       <div className={styles.imgBox}>
         <img
