@@ -23,13 +23,14 @@ export default function Login() {
     <div className={styles.container}>
       <div className={styles.form}>
         <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} data-cy='login-form'>
           <Input label="email" value={email} onChange={setEmail} />
           <Input label="password" value={password} onChange={setPassword} />
           <button
             disabled={!email || !password}
             type="submit"
             className="primaryBtn"
+            data-cy='login-btn'
           >
             Login
           </button>
