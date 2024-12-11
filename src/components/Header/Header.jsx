@@ -58,6 +58,7 @@ export default function Header() {
           placeholder="Where to go?"
           value={destination}
           onChange={(e) => setDestination(e.target.value)}
+          data-cy="search-input"
         />
       </div>
       <div className={styles.headerFilters}>
@@ -69,6 +70,7 @@ export default function Header() {
             id="dateDropDown"
             onClick={() => setOpenDateRange(!openDateRange)}
             style={{ width: "100%" }}
+            data-cy="date-container"
           >
             {format(date[0].startDate, "MM/dd/yyyy")} <span>to</span>{" "}
             {format(date[0].endDate, "MM/dd/yyyy")}
@@ -90,6 +92,7 @@ export default function Header() {
             id="optionDropDown"
             style={{ width: "100%" }}
             onClick={() => setOpenOptions(!openOptions)}
+            data-cy="option-container"
           >
             {options.adult} Adult &bull; {options.children} Children &bull;
             {options.room} Room
@@ -103,7 +106,11 @@ export default function Header() {
           )}
         </div>
       </div>
-      <button onClick={handleSearch} className={styles.searchButton}>
+      <button
+        data-cy="search-btn"
+        onClick={handleSearch}
+        className={styles.searchButton}
+      >
         Search
       </button>
     </div>
@@ -116,7 +123,11 @@ function GuestOptionList({ options, handleOptions, setOpenOptions }) {
   useOutsideClick(optionsRef, "optionDropDown", () => setOpenOptions(false));
 
   return (
-    <div className={`${styles.optionList} ${styles.dropDown}`} ref={optionsRef}>
+    <div
+      data-cy="option-drop-down"
+      className={`${styles.optionList} ${styles.dropDown}`}
+      ref={optionsRef}
+    >
       <GuestOptionItem
         type="adult"
         options={options}
@@ -149,11 +160,15 @@ function GuestOptionItem({ options, type, minLimit, handleOptions }) {
         <button
           disabled={options[type] <= minLimit}
           onClick={() => handleOptions(type, "dec")}
+          data-cy={`${type}-dec`}
         >
           <HiMinus />
         </button>
         <span>{options[type]}</span>
-        <button onClick={() => handleOptions(type, "inc")}>
+        <button
+          onClick={() => handleOptions(type, "inc")}
+          data-cy={`${type}-inc`}
+        >
           <HiPlus />
         </button>
       </div>
@@ -167,7 +182,11 @@ function DateDropDown({ setOpenDateRange, children }) {
   useOutsideClick(dateRef, "dateDropDown", () => setOpenDateRange(false));
 
   return (
-    <div ref={dateRef} className={`${styles.datePicker} ${styles.dropDown}`}>
+    <div
+      data-cy="date-drop-down"
+      ref={dateRef}
+      className={`${styles.datePicker} ${styles.dropDown}`}
+    >
       {children}
     </div>
   );
