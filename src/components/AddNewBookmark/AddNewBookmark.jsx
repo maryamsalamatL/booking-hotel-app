@@ -79,7 +79,7 @@ export default function AddNewBookmark() {
   return (
     <div>
       <h2>Bookmark New Location</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} data-cy="add-bookmark-form">
         <Input label="city" value={city} onChange={setCity} />
         <Input label="country" value={country} onChange={setCountry} />
         <div className={styles.buttons}>
