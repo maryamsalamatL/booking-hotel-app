@@ -29,6 +29,7 @@ export default function Bookmarks() {
                 ? "currentHotel"
                 : ""
             }`}
+            data-cy="bookmark-item"
           >
             <p className="centralize">
               <ReactCountryFlag svg countryCode={item.countryCode} />
@@ -40,6 +41,7 @@ export default function Bookmarks() {
                 e.preventDefault();
                 deleteBookmark(item.id);
               }}
+              data-cy="bookmark-item-trash"
             >
               <BiTrash className={styles.icon} />
             </button>
