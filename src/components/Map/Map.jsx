@@ -46,6 +46,7 @@ export default function Map({ markerLocations }) {
             e.preventDefault();
             getPosition();
           }}
+          data-cy='map-user-location-btn'
         >
           {isGeoLocationLoading ? "Loading ..." : "use your location"}
         </button>
@@ -94,9 +95,10 @@ function Tip() {
   return (
     <div
       className={`${styles.mapTip} ${isTipSeen ? styles.hide : styles.show}`}
+      data-cy="map-tip"
     >
       <p>Click on map to bookmark any location.</p>
-      <button className="primaryBtn" onClick={handleTip}>
+      <button className="primaryBtn" onClick={handleTip} data-cy="map-tip-btn">
         Ok
       </button>
     </div>
