@@ -16,6 +16,7 @@ export default function Hotels() {
         <Link
           key={item.id}
           to={`${item.id}?lat=${item.latitude}&lng=${item.longitude}`}
+          data-cy="hotel-item"
         >
           <LocationItem styles={styles} {...item} />
         </Link>
