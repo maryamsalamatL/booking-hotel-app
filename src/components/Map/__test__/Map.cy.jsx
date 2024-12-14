@@ -4,7 +4,7 @@ const Container = ({ children }) => (
   <div style={{ width: "100%", height: "100vh" }}>{children}</div>
 );
 
-describe("testing HotelsLayout", () => {
+describe("testing Map", () => {
   it("should render map, without any marker", () => {
     cy.mount(
       <Container>
