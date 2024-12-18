@@ -10,7 +10,7 @@ export default function Hotels() {
   if (isLoading) return <Loader />;
 
   return (
-    <div className={styles.hotelsList}>
+    <div className={styles.hotelsList} data-cy="hotels-list">
       <h2>Search Result({hotels.length})</h2>
       {hotels.map((item) => (
         <Link

@@ -9,7 +9,7 @@ export default function ProtectedRoute({ children }) {
   const location = useLocation();
 
   const toastText = location.pathname.includes("add")
-    ? "To bookmark any location, please login firs."
+    ? "To bookmark any location, please login first."
     : "To access the bookmarks, please login first.";
 
   useEffect(() => {

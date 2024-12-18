@@ -11,7 +11,7 @@ export default function HotelsLayout() {
       <div className={styles.sidebar}>
         <Outlet />
       </div>
-      <div className={styles.mapContainer}>
+      <div className={styles.mapContainer} data-cy="hotel-map">
         <Map markerLocations={hotels} />
       </div>
     </div>

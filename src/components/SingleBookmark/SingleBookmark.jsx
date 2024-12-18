@@ -21,14 +21,18 @@ export default function SingleBookmark() {
   if (isLoading) return <Loader />;
 
   return (
-    <div>
+    <div data-cy="single-bookmark">
       <div>
         <h2 className="centralize">
           <ReactCountryFlag countryCode={countryCode} svg /> &nbsp;
           {cityName} - {country}
         </h2>
       </div>
-      <button onClick={() => navigate(-1)} className="secondaryBtn">
+      <button
+        onClick={() => navigate(-1)}
+        className="secondaryBtn"
+        data-cy="single-bookmark-back-btn"
+      >
         &larr; Back
       </button>
     </div>

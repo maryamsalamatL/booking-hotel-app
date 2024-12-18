@@ -10,7 +10,7 @@ export default function LocationList() {
   );
 
   return (
-    <div className={styles.nearbyLocations}>
+    <div className={styles.nearbyLocations} data-cy="nearby-locations">
       {isLoading ? (
         <Loader />
       ) : (

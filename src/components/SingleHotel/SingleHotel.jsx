@@ -38,7 +38,7 @@ export default function SingleHotel() {
   }, [id]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-cy="single-hotel">
       {isLoading ? (
         <Loader />
       ) : (

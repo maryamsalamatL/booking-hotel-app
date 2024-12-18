@@ -7,11 +7,11 @@ export default function BookmarksLayout() {
   const { bookmarks } = useBookmarks();
 
   return (
-    <div className={styles.hotelsLayout}>
-      <div className={styles.sidebar}>
+    <div className={styles.hotelsLayout} data-cy="bookmarks-layout">
+      <div className={styles.sidebar} data-cy="bookmarks-sidebar">
         <Outlet />
       </div>
-      <div className={styles.mapContainer}>
+      <div className={styles.mapContainer} data-cy="bookmarks-map">
         <Map markerLocations={bookmarks} />
       </div>
     </div>

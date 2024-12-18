@@ -85,6 +85,7 @@ export default function AddNewBookmark() {
         <div className={styles.buttons}>
           <button
             className="secondaryBtn"
+            data-cy="bookmark-back-btn"
             onClick={(e) => {
               e.preventDefault();
               navigate(-1);
@@ -92,7 +93,11 @@ export default function AddNewBookmark() {
           >
             &larr; Back
           </button>
-          <button className="primaryBtn" type="submit">
+          <button
+            className="primaryBtn"
+            type="submit"
+            data-cy="add-bookmark-btn"
+          >
             Add
           </button>
         </div>
