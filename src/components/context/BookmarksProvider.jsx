@@ -83,6 +83,17 @@ export default function BookmarksProvider({ children }) {
   }, [error]);
 
   const createBookmark = async (newBookmark) => {
+    const isExist = bookmarks.some(
+      (item) =>
+        item.cityName === newBookmark.cityName &&
+        item.country === newBookmark.country
+    );
+
+    if (isExist) {
+      toast("this location is already bookmarked.");
+      return;
+    }
+
     dispatch({ type: "loading" });
 
     try {
