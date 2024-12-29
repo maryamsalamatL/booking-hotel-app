@@ -1,4 +1,5 @@
 import { useCurrentHotelId } from "../context/HotelsProvider";
+import placeholder from "../../../assets/placeholder.png";
 
 export default function LocationItem({
   id,
@@ -19,10 +20,8 @@ export default function LocationItem({
     >
       <div className={styles.imgBox}>
         <img
-          onError={(e) =>
-            (e.currentTarget.src = "../../../assets/placeholder.png")
-          }
-          src={thumbnail_url}
+          onError={(e) => (e.currentTarget.src = placeholder)}
+          src={thumbnail_url || placeholder}
           alt={name}
         />
       </div>

@@ -6,6 +6,7 @@ import { useSetCurrentHotelId } from "../context/HotelsProvider";
 import { useEffect } from "react";
 import { MdLocationOn } from "react-icons/md";
 import toast from "react-hot-toast";
+import placeholder from "../../../assets/placeholder.png";
 
 export default function SingleHotel() {
   const { id } = useParams();
@@ -47,7 +48,11 @@ export default function SingleHotel() {
           <span>
             {number_of_reviews} &bull; {smart_location}
           </span>
-          <img src={xl_picture_url} alt={name} />
+          <img
+            onError={(e) => (e.currentTarget.src = placeholder)}
+            src={xl_picture_url || placeholder}
+            alt={name}
+          />
           <ul>
             <p className={styles.details}>Details</p>
             <li>
