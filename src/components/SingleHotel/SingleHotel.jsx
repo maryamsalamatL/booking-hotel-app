@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 export default function SingleHotel() {
   const { id } = useParams();
   const { isLoading, data } = useFetch(
-    `${process.env.REACT_APP_BASE_URL}/hotels/${id}`
+    `${import.meta.env.VITE_BASE_URL}/hotels/${id}`
   );
   const {
     name,

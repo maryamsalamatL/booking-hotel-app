@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
 import { bookmarks, hotels } from "./data";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 export const handlers = [
   http.get(`${BASE_URL}/bookmarks`, () => {
     return HttpResponse.json(bookmarks);

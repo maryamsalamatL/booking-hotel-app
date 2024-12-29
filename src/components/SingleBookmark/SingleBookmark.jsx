@@ -8,7 +8,7 @@ import ReactCountryFlag from "react-country-flag";
 export default function SingleBookmark() {
   const { id } = useParams();
   const { isLoading, data } = useFetch(
-    `${process.env.REACT_APP_BASE_URL}/bookmarks/${id}`
+    `${import.meta.env.VITE_BASE_URL}/bookmarks/${id}`
   );
   const { cityName, country, countryCode } = data;
   const setCurrentBookmarkId = useSetCurrentBookmarkId();

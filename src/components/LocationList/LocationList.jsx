@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function LocationList() {
   const { data, isLoading } = useFetch(
-    `${process.env.REACT_APP_BASE_URL}/hotels`
+    `${import.meta.env.VITE_BASE_URL}/hotels`
   );
 
   return (
