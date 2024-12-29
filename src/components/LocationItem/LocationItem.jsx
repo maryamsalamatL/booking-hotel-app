@@ -15,12 +15,12 @@ export default function LocationItem({
       className={`${styles.locationItem} ${
         id === currentHotelId ? "currentHotel" : ""
       }`}
-      data-cy='location-item'
+      data-cy="location-item"
     >
       <div className={styles.imgBox}>
         <img
           onError={(e) =>
-            (e.currentTarget.src = "../../assets/placeholder.png")
+            (e.currentTarget.src = "../../../assets/placeholder.png")
           }
           src={thumbnail_url}
           alt={name}
