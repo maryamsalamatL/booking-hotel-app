@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "react-date-range/dist/styles.css";
 import styles from "./Header.module.scss";
 import { DateRange } from "react-date-range";
@@ -48,6 +48,10 @@ export default function Header() {
 
     navigate({ pathname: "/hotels", search: encodedParams.toString() });
   };
+
+  useEffect(() => {
+    if (!searchParams.get("destination")) setDestination("");
+  }, [navigate]);
 
   return (
     <div className={styles.header} data-cy="header">
