@@ -16,6 +16,7 @@ import useUrlLocation from "../../hooks/useUrlLocation";
 export default function Map({ markerLocations }) {
   const { lat, lng } = useUrlLocation();
   const [mapCenter, setMapCenter] = useState([40, 30]);
+  const [singleMarker, setSingleMarker] = useState(null);
   const {
     getPosition,
     isLoading: isGeoLocationLoading,
@@ -23,7 +24,10 @@ export default function Map({ markerLocations }) {
   } = useGeolocation();
 
   useEffect(() => {
-    if (lng && lat) setMapCenter([lat, lng]);
+    if (lng && lat) {
+      setMapCenter([lat, lng]);
+      setSingleMarker({ lng, lat });
+    }
   }, [lng, lat]);
 
   useEffect(() => {
@@ -46,7 +50,7 @@ export default function Map({ markerLocations }) {
             e.preventDefault();
             getPosition();
           }}
-          data-cy='map-user-location-btn'
+          data-cy="map-user-location-btn"
         >
           {isGeoLocationLoading ? "Loading ..." : "use your location"}
         </button>
@@ -61,6 +65,9 @@ export default function Map({ markerLocations }) {
             <Popup>{item.host_location}</Popup>
           </Marker>
         ))}
+        {singleMarker && (
+          <Marker position={[singleMarker.lat, singleMarker.lng]}></Marker>
+        )}
       </MapContainer>
     </>
   );
