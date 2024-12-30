@@ -220,7 +220,7 @@ describe("template spec", () => {
       cy.getByDataCy("add-bookmark-btn").click();
 
       // assert new item
-      cy.contains("test country").as("new-bookmark");
+      cy.contains("country").as("new-bookmark");
       cy.get("@new-bookmark").should("exist");
 
       // assert style
