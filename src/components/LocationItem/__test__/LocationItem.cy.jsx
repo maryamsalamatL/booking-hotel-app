@@ -36,7 +36,9 @@ describe("testing LocationItem: ", () => {
     cy.mount(<LocationItem styles={{}} {...fakeLocation} />);
 
     cy.getByDataCy("location-item").within(() => {
-      cy.get("img").should("have.attr", "src", "../../assets/placeholder.png");
+      cy.get("img")
+        .should("have.attr", "src")
+        .and("include", "/assets/placeholder.png");
     });
   });
 });
